@@ -281,13 +281,80 @@
     line-height:1.4;
   }
 
+  /* ---------- Section: countdown ---------- */
+  #countdown{ background: var(--indigo); }
+  .countdown-label{
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color: var(--sakura);
+    margin-bottom: 1.5rem;
+  }
+  .countdown-number{
+    font-family:'Shippori Mincho', serif;
+    font-size: clamp(4rem, 16vw, 7.5rem);
+    color: var(--paper);
+    line-height:1;
+  }
+  .countdown-unit{
+    font-size:0.85rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color: var(--paper);
+    opacity:0.55;
+    margin-top:0.8rem;
+  }
+  .countdown-date{
+    margin-top:2.2rem;
+    font-size:0.8rem;
+    color: var(--paper);
+    opacity:0.4;
+  }
+
+  /* ---------- Section: por qué Japón ---------- */
+  #why{ background: var(--paper); color: var(--ink); }
+  .why-title{
+    font-family:'Shippori Mincho', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 3.5rem;
+  }
+  .why-list{
+    display:flex; flex-direction:column; gap: 2.6rem;
+    max-width: 480px;
+  }
+  .why-item{ text-align:left; }
+  .why-item .num{
+    font-family:'Shippori Mincho', serif;
+    font-size:0.85rem;
+    color: var(--sakura-deep);
+    letter-spacing:0.1em;
+    margin-bottom:0.5rem;
+    display:block;
+  }
+  .why-item .txt{
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height:1.7;
+  }
+
+  /* ---------- Route highlights (detalle extra) ---------- */
+  .postal .highlights{
+    list-style:none;
+    margin-top:0.4rem;
+    font-size:0.72rem;
+    color: var(--paper);
+    opacity:0.5;
+    line-height:1.6;
+    max-width:20ch;
+  }
+  .postal .highlights li{ margin-bottom:0.15rem; }
+
   /* ---------- Section 4: closing ---------- */
   #closing{ background: var(--paper); color: var(--ink); }
   .closing-mark{
     font-family:'Shippori Mincho', serif;
-    font-size: clamp(1.4rem, 3.4vw, 2rem);
-    max-width: 26ch;
-    line-height:1.5;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    max-width: 38ch;
+    line-height:1.55;
     margin-bottom: 2.5rem;
   }
   .signature{
@@ -330,6 +397,31 @@
   <div class="scroll-arrow">sigue bajando ↓</div>
 </section>
 
+<section id="countdown">
+  <div class="countdown-label">quedan</div>
+  <div class="countdown-number" id="daysLeft">···</div>
+  <div class="countdown-unit">días</div>
+  <div class="countdown-date">hasta la primavera de 2027</div>
+</section>
+
+<section id="why">
+  <div class="why-title display">Por qué Japón</div>
+  <div class="why-list">
+    <div class="why-item">
+      <span class="num display">一</span>
+      <div class="txt">Porque lleva años siendo esa idea que sacábamos en cualquier conversación, medio en broma, medio en serio — y las cosas que se repiten tanto, al final, hay que hacerlas de verdad.</div>
+    </div>
+    <div class="why-item">
+      <span class="num display">二</span>
+      <div class="txt">Porque los dos queremos las mismas cosas de un viaje así: perdernos por ciudades enormes, comer sin miedo, y quedarnos en silencio delante de un templo o una montaña.</div>
+    </div>
+    <div class="why-item">
+      <span class="num display">三</span>
+      <div class="txt">Porque los 30 solo se cumplen una vez, y quería que el regalo fuera algo que recordáramos dentro de otros 30 años, no solo dentro de 30 días.</div>
+    </div>
+  </div>
+</section>
+
 <section id="postcard">
   <div class="postcard-frame">
     <img src="img/fuji.jpg" alt="Monte Fuji">
@@ -349,6 +441,11 @@
       <div class="name display">Tokio</div>
       <div class="days">Días 1-5</div>
       <div class="note">Shibuya, Shinjuku, Asakusa + excursión a Nikko o Kamakura</div>
+      <ul class="highlights">
+        <li>Cruce de Shibuya de noche</li>
+        <li>Templo Senso-ji, Asakusa</li>
+        <li>Día completo en Nikko o Kamakura</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -358,6 +455,11 @@
       <div class="name display">Akihabara</div>
       <div class="days">dentro de días 1-5</div>
       <div class="note">el barrio eléctrico: anime, arcades, tiendas de electrónica</div>
+      <ul class="highlights">
+        <li>Salas de arcade retro</li>
+        <li>Tiendas de figuras y manga</li>
+        <li>Maid cafés, si os apetece probar</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -367,6 +469,11 @@
       <div class="name display">Kioto</div>
       <div class="days">Días 6-9</div>
       <div class="note">Gion, Fushimi Inari, bosque de Arashiyama + día en Nara</div>
+      <ul class="highlights">
+        <li>Miles de torii en Fushimi Inari</li>
+        <li>Bosque de bambú de Arashiyama</li>
+        <li>Barrio de geishas de Gion al atardecer</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -376,6 +483,10 @@
       <div class="name display">Nara</div>
       <div class="days">dentro de días 6-9</div>
       <div class="note">el parque de los ciervos, de camino desde Kioto</div>
+      <ul class="highlights">
+        <li>Ciervos sueltos por el parque</li>
+        <li>Templo Todai-ji y su Buda gigante</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -385,6 +496,11 @@
       <div class="name display">Osaka</div>
       <div class="days">Días 10-11</div>
       <div class="note">Dotonbori, Castillo de Osaka + parada en Himeji</div>
+      <ul class="highlights">
+        <li>Takoyaki recién hecho en Dotonbori</li>
+        <li>Castillo de Osaka</li>
+        <li>Parada rápida en el castillo de Himeji</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -394,6 +510,11 @@
       <div class="name display">Hiroshima · Miyajima</div>
       <div class="days">Días 12-13</div>
       <div class="note">Parque de la Paz + el torii flotante de Itsukushima</div>
+      <ul class="highlights">
+        <li>Parque y Museo Memorial de la Paz</li>
+        <li>Torii flotante al atardecer</li>
+        <li>Los ciervos sueltos también aquí, en la isla</li>
+      </ul>
     </div>
 
     <div class="postal">
@@ -403,17 +524,30 @@
       <div class="name display">Vuelta a Tokio</div>
       <div class="days">Día 14</div>
       <div class="note">tren bala de vuelta y vuelo a casa</div>
+      <ul class="highlights">
+        <li>Última parada en la estatua de Hachiko</li>
+        <li>Shinkansen de vuelta y vuelo a casa</li>
+      </ul>
     </div>
 
   </div>
 </section>
 
 <section id="closing">
-  <div class="closing-mark display">Todo lo demás lo iremos decidiendo juntos, con calma, en los próximos meses.</div>
+  <div class="closing-mark display">Este mes que viene nos sentaremos juntos, sin prisa, a construir el viaje perfecto — vuelos, rutas, días libres para perdernos. Lo mejor de todo esto, en realidad, es que ni siquiera ha empezado.</div>
   <div class="signature">con todo mi cariño, para tus 30</div>
 </section>
 
 <script>
+  // countdown to spring 2027
+  (function(){
+    const target = new Date('2027-03-20T00:00:00');
+    const now = new Date();
+    const diff = Math.max(0, Math.ceil((target - now) / (1000*60*60*24)));
+    const el = document.getElementById('daysLeft');
+    if(el){ el.textContent = diff; }
+  })();
+
   // falling petals
   const container = document.getElementById('petals');
   const count = window.innerWidth < 600 ? 14 : 24;
