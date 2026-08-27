@@ -183,43 +183,102 @@
     opacity:0.5;
   }
 
-  /* ---------- Section 3: route ---------- */
-  #route{ background: var(--indigo-deep); }
+  /* ---------- Section 2b: postal grande ---------- */
+  #postcard{ background: var(--paper); color: var(--ink); padding-top: 4vh; }
+  .postcard-frame{
+    width: min(560px, 86vw);
+    aspect-ratio: 4/3;
+    background: var(--paper);
+    border: 1px solid rgba(36,49,77,0.15);
+    border-radius: 6px;
+    padding: 0.7rem;
+    box-shadow: 0 30px 50px -25px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  .postcard-frame img{
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius: 3px;
+    display:block;
+  }
+  .postcard-caption{
+    margin-top:1.6rem;
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+  }
+
+  /* ---------- Section 3: route (postales) ---------- */
+  #route{ background: var(--indigo-deep); padding-top: 10vh; padding-bottom: 10vh; }
   .route-title{
     font-family:'Shippori Mincho', serif;
     font-size: clamp(1.6rem, 4vw, 2.4rem);
-    margin-bottom: 3.5rem;
+    margin-bottom: 0.8rem;
     color: var(--paper);
   }
-  .cities{
-    display:flex; gap: clamp(1.5rem, 6vw, 5rem);
-    flex-wrap:wrap; justify-content:center;
-    max-width: 720px;
-  }
-  .city{ display:flex; flex-direction:column; align-items:center; gap:0.9rem; }
-  .city .dot{
-    width:10px; height:10px; border-radius:50%;
-    background: var(--sakura);
-  }
-  .city .name{
-    font-family:'Shippori Mincho', serif;
-    font-size:1.2rem;
-    color: var(--paper);
-  }
-  .city .note{
-    font-size:0.75rem;
+  .route-sub{
+    font-size:0.85rem;
     color: var(--paper);
     opacity:0.55;
-    max-width: 16ch;
+    letter-spacing:0.05em;
+    margin-bottom: 3.5rem;
+  }
+
+  .postal-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: clamp(1.6rem, 4vw, 2.6rem);
+    max-width: 920px;
+    width:100%;
+    counter-reset: stop;
+  }
+
+  .postal{
+    display:flex; flex-direction:column; align-items:center; gap:0.9rem;
+    position:relative;
+  }
+
+  .postal::before{
+    counter-increment: stop;
+    content: counter(stop, decimal-leading-zero);
+    position:absolute;
+    top:-1.4rem;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    color: var(--gold);
+    opacity:0.7;
+  }
+
+  .icon-circle{
+    width: 92px; height:92px;
+    border-radius:50%;
+    background: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 16px 30px -12px rgba(0,0,0,0.45);
+    overflow:hidden;
+  }
+  .icon-circle svg{ width:46px; height:46px; }
+  .icon-circle img{ width:100%; height:100%; object-fit:cover; }
+
+  .postal .name{
+    font-family:'Shippori Mincho', serif;
+    font-size:1.15rem;
+    color: var(--paper);
+  }
+  .postal .days{
+    font-size:0.68rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--sakura);
+  }
+  .postal .note{
+    font-size:0.78rem;
+    color: var(--paper);
+    opacity:0.55;
+    max-width: 18ch;
     text-align:center;
-  }
-  .route-line{
-    width:1px; height:2.5rem;
-    background: rgba(246,240,228,0.25);
-  }
-  .route-track{
-    display:flex; flex-direction:column; align-items:center;
-    margin-top: 2rem;
+    line-height:1.4;
   }
 
   /* ---------- Section 4: closing ---------- */
@@ -271,26 +330,81 @@
   <div class="scroll-arrow">sigue bajando ↓</div>
 </section>
 
+<section id="postcard">
+  <div class="postcard-frame">
+    <img src="img/fuji.jpg" alt="Monte Fuji">
+  </div>
+  <div class="postcard-caption">una postal, antes de ir</div>
+</section>
+
 <section id="route">
   <div class="route-title display">El recorrido, a grandes rasgos</div>
-  <div class="route-track">
-    <div class="cities">
-      <div class="city">
-        <div class="dot"></div>
-        <div class="name display">Tokio</div>
-        <div class="note">luces, barrios, el punto de partida</div>
+  <div class="route-sub">14 días, seis paradas, un mismo hilo</div>
+  <div class="postal-grid">
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/tokio.jpg" alt="Cruce de Shibuya, Tokio">
       </div>
-      <div class="city">
-        <div class="dot"></div>
-        <div class="name display">Kioto</div>
-        <div class="note">templos, cerezos, calma</div>
-      </div>
-      <div class="city">
-        <div class="dot"></div>
-        <div class="name display">Osaka</div>
-        <div class="note">comida callejera, últimas noches</div>
-      </div>
+      <div class="name display">Tokio</div>
+      <div class="days">Días 1-5</div>
+      <div class="note">Shibuya, Shinjuku, Asakusa + excursión a Nikko o Kamakura</div>
     </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/akihabara.jpg" alt="Akihabara de noche">
+      </div>
+      <div class="name display">Akihabara</div>
+      <div class="days">dentro de días 1-5</div>
+      <div class="note">el barrio eléctrico: anime, arcades, tiendas de electrónica</div>
+    </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/kioto.jpg" alt="Fushimi Inari, Kioto">
+      </div>
+      <div class="name display">Kioto</div>
+      <div class="days">Días 6-9</div>
+      <div class="note">Gion, Fushimi Inari, bosque de Arashiyama + día en Nara</div>
+    </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/nara.jpg" alt="Ciervo entre cerezos, Nara">
+      </div>
+      <div class="name display">Nara</div>
+      <div class="days">dentro de días 6-9</div>
+      <div class="note">el parque de los ciervos, de camino desde Kioto</div>
+    </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/osaka.jpg" alt="Takoyaki en Osaka">
+      </div>
+      <div class="name display">Osaka</div>
+      <div class="days">Días 10-11</div>
+      <div class="note">Dotonbori, Castillo de Osaka + parada en Himeji</div>
+    </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/miyajima.jpg" alt="Torii flotante de Miyajima">
+      </div>
+      <div class="name display">Hiroshima · Miyajima</div>
+      <div class="days">Días 12-13</div>
+      <div class="note">Parque de la Paz + el torii flotante de Itsukushima</div>
+    </div>
+
+    <div class="postal">
+      <div class="icon-circle">
+        <img src="img/hachiko.jpg" alt="Estatua de Hachiko">
+      </div>
+      <div class="name display">Vuelta a Tokio</div>
+      <div class="days">Día 14</div>
+      <div class="note">tren bala de vuelta y vuelo a casa</div>
+    </div>
+
   </div>
 </section>
 
