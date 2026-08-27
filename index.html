@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo: #1B2A4A;
+    --indigo-deep: #101A30;
+    --paper: #F6F0E4;
+    --sakura: #EFB2BB;
+    --sakura-deep: #DE8A96;
+    --gold: #C9A05C;
+    --ink: #24314D;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--indigo);
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    overflow-x:hidden;
+  }
+
+  .display{ font-family:'Shippori Mincho', serif; }
+
+  /* ---------- Falling petals ---------- */
+  .petals{
+    position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;
+  }
+  .petal{
+    position:absolute; top:-5%;
+    width:14px; height:14px;
+    background: var(--sakura);
+    border-radius: 0 60% 0 60%;
+    opacity:0.75;
+    animation: fall linear infinite;
+  }
+  @keyframes fall{
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(115vh) translateX(40px) rotate(300deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation: none; display:none; }
+  }
+
+  /* ---------- Section 1: envelope ---------- */
+  section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+    padding: 8vh 6vw;
+    text-align:center;
+  }
+
+  .eyebrow{
+    letter-spacing:0.35em;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    color: var(--sakura);
+    margin-bottom: 1.8rem;
+  }
+
+  .kanji{
+    font-size: clamp(5rem, 22vw, 11rem);
+    line-height:1;
+    color: var(--paper);
+    opacity:0.92;
+    margin-bottom: 0.5rem;
+  }
+
+  .sub{
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--paper);
+    opacity:0.75;
+    max-width: 30ch;
+    margin: 0 auto 3.5rem;
+  }
+
+  /* envelope / omikuji card */
+  .card{
+    width: min(320px, 80vw);
+    aspect-ratio: 3/4.2;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 4px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    position:relative;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+  }
+  .card:hover{ transform: translateY(-4px); }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:14px; left:14px; right:14px; bottom:14px;
+    border: 1px solid rgba(36,49,77,0.25);
+  }
+  .card .tag{
+    font-family:'Shippori Mincho', serif;
+    font-size:1.4rem;
+    letter-spacing:0.08em;
+  }
+  .card .tag-small{
+    margin-top:0.6rem;
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+  }
+
+  .hint{
+    margin-top: 2rem;
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    color: var(--paper);
+    opacity:0.45;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Section 2: reveal letter ---------- */
+  #reveal{ display:none; background: var(--paper); color: var(--ink); }
+  #reveal.show{ display:flex; }
+
+  .letter{
+    max-width: 560px;
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    line-height:1.9;
+  }
+  .letter p{ margin-bottom:1.4rem; opacity:0; transform: translateY(14px); animation: rise 0.8s ease forwards; }
+  .letter p:nth-child(1){ animation-delay: 0.1s; }
+  .letter p:nth-child(2){ animation-delay: 0.7s; }
+  .letter p:nth-child(3){ animation-delay: 1.3s; }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+
+  .big-reveal{
+    margin-top: 3rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    opacity:0;
+    animation: rise 1s ease forwards;
+    animation-delay: 2.1s;
+  }
+  .big-reveal .country{
+    font-family:'Shippori Mincho', serif;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    color: var(--indigo);
+    letter-spacing:0.05em;
+  }
+  .big-reveal .when{
+    margin-top:0.6rem;
+    font-size:0.95rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+  }
+
+  .scroll-arrow{
+    margin-top:3rem;
+    opacity:0;
+    animation: rise 1s ease forwards;
+    animation-delay: 2.6s;
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color: var(--ink);
+    opacity:0.5;
+  }
+
+  /* ---------- Section 3: route ---------- */
+  #route{ background: var(--indigo-deep); }
+  .route-title{
+    font-family:'Shippori Mincho', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 3.5rem;
+    color: var(--paper);
+  }
+  .cities{
+    display:flex; gap: clamp(1.5rem, 6vw, 5rem);
+    flex-wrap:wrap; justify-content:center;
+    max-width: 720px;
+  }
+  .city{ display:flex; flex-direction:column; align-items:center; gap:0.9rem; }
+  .city .dot{
+    width:10px; height:10px; border-radius:50%;
+    background: var(--sakura);
+  }
+  .city .name{
+    font-family:'Shippori Mincho', serif;
+    font-size:1.2rem;
+    color: var(--paper);
+  }
+  .city .note{
+    font-size:0.75rem;
+    color: var(--paper);
+    opacity:0.55;
+    max-width: 16ch;
+    text-align:center;
+  }
+  .route-line{
+    width:1px; height:2.5rem;
+    background: rgba(246,240,228,0.25);
+  }
+  .route-track{
+    display:flex; flex-direction:column; align-items:center;
+    margin-top: 2rem;
+  }
+
+  /* ---------- Section 4: closing ---------- */
+  #closing{ background: var(--paper); color: var(--ink); }
+  .closing-mark{
+    font-family:'Shippori Mincho', serif;
+    font-size: clamp(1.4rem, 3.4vw, 2rem);
+    max-width: 26ch;
+    line-height:1.5;
+    margin-bottom: 2.5rem;
+  }
+  .signature{
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+  }
+
+  @media (max-width: 480px){
+    .cities{ gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<section id="intro">
+  <div class="eyebrow">30 años</div>
+  <div class="kanji display">春</div>
+  <p class="sub">Hay algo esperándote. No hace falta que lo abras ahora — pero si quieres, ábrelo cuando estés lista.</p>
+  <div class="card" id="openCard">
+    <div class="tag display">開く</div>
+    <div class="tag-small">Toca para abrir</div>
+  </div>
+  <div class="hint">un regalo para tus 30</div>
+</section>
+
+<section id="reveal">
+  <div class="letter">
+    <p>Ratolín, llevamos tiempo hablando de esto, como una idea lejana, como algo que "algún día" haríamos.</p>
+    <p>Hoy ese día empieza a existir. No es un billete, no es un objeto — es una promesa con fecha.</p>
+    <p>Nos vamos juntos a:</p>
+  </div>
+  <div class="big-reveal">
+    <div class="country display">Japón</div>
+    <div class="when">Primavera 2027 · temporada de sakura</div>
+  </div>
+  <div class="scroll-arrow">sigue bajando ↓</div>
+</section>
+
+<section id="route">
+  <div class="route-title display">El recorrido, a grandes rasgos</div>
+  <div class="route-track">
+    <div class="cities">
+      <div class="city">
+        <div class="dot"></div>
+        <div class="name display">Tokio</div>
+        <div class="note">luces, barrios, el punto de partida</div>
+      </div>
+      <div class="city">
+        <div class="dot"></div>
+        <div class="name display">Kioto</div>
+        <div class="note">templos, cerezos, calma</div>
+      </div>
+      <div class="city">
+        <div class="dot"></div>
+        <div class="name display">Osaka</div>
+        <div class="note">comida callejera, últimas noches</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="closing">
+  <div class="closing-mark display">Todo lo demás lo iremos decidiendo juntos, con calma, en los próximos meses.</div>
+  <div class="signature">con todo mi cariño, para tus 30</div>
+</section>
+
+<script>
+  // falling petals
+  const container = document.getElementById('petals');
+  const count = window.innerWidth < 600 ? 14 : 24;
+  for(let i=0;i<count;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (8 + Math.random()*10) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.opacity = 0.4 + Math.random()*0.4;
+    const scale = 0.6 + Math.random()*0.8;
+    p.style.transform = `scale(${scale})`;
+    container.appendChild(p);
+  }
+
+  // open card -> reveal
+  document.getElementById('openCard').addEventListener('click', function(){
+    const reveal = document.getElementById('reveal');
+    reveal.classList.add('show');
+    reveal.scrollIntoView({behavior:'smooth'});
+  });
+</script>
+
+</body>
+</html>
