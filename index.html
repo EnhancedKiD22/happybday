@@ -290,7 +290,11 @@
     position:relative;
     flex: 1 1 150px;
     max-width: 190px;
+    cursor:pointer;
+    transition: transform 0.3s ease;
   }
+  .postal:hover{ transform: translateY(-4px); }
+  .postal:hover .icon-circle{ box-shadow: 0 20px 36px -12px rgba(0,0,0,0.55); }
 
   .postal::before{
     counter-increment: stop;
@@ -478,6 +482,33 @@
     font-size: clamp(2rem, 7vw, 3.5rem);
     color: var(--sakura);
     letter-spacing:0.03em;
+    filter: blur(16px);
+    transition: filter 0.8s ease;
+    user-select:none;
+  }
+  .meanwhile-reveal .place.revealed{
+    filter: blur(0);
+  }
+  .unlock-btn{
+    margin-top:1.2rem;
+    font-size:0.7rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color: var(--sakura);
+    background: none;
+    border: 1px solid var(--sakura);
+    border-radius: 20px;
+    padding: 0.6rem 1.4rem;
+    cursor:pointer;
+    transition: opacity 0.5s ease, transform 0.4s ease;
+  }
+  .unlock-btn:hover{ transform: translateY(-2px); }
+  .unlock-btn.hidden{
+    opacity:0;
+    pointer-events:none;
+    height:0;
+    margin:0;
+    overflow:hidden;
   }
   .meanwhile-reveal .when{
     margin-top:0.6rem;
@@ -485,17 +516,21 @@
     letter-spacing:0.2em;
     text-transform:uppercase;
     color: var(--paper);
-    opacity:0.6;
+    opacity:0;
+    transition: opacity 0.8s ease;
   }
+  .meanwhile-reveal .when.show{ opacity:0.6; }
   .meanwhile-reveal .extra{
     margin: 1.8rem auto 0;
     font-size:0.85rem;
     color: var(--paper);
-    opacity:0.5;
+    opacity:0;
     max-width: 30ch;
     line-height:1.6;
     text-align:center;
+    transition: opacity 0.8s ease;
   }
+  .meanwhile-reveal .extra.show{ opacity:0.5; }
 
   /* ---------- Progress bar & back to top ---------- */
   .progress-bar{
@@ -532,6 +567,66 @@
 
   @media (max-width: 480px){
     .cities{ gap: 2rem; }
+  }
+
+  /* ---------- Modal de info por parada ---------- */
+  .info-overlay{
+    position:fixed; inset:0;
+    background: rgba(16,26,48,0.92);
+    z-index:100;
+    display:flex; align-items:center; justify-content:center;
+    padding: 5vh 6vw;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.4s ease;
+  }
+  .info-overlay.show{ opacity:1; pointer-events:auto; }
+  .info-card{
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 440px;
+    width:100%;
+    max-height: 85vh;
+    overflow-y:auto;
+    border-radius: 8px;
+    overflow:hidden;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6);
+    transform: scale(0.94);
+    transition: transform 0.4s ease;
+  }
+  .info-overlay.show .info-card{ transform:none; }
+  .info-card img{
+    width:100%; height:200px; object-fit:cover; display:block;
+  }
+  .info-card-body{ padding: 1.8rem 2rem 2.2rem; }
+  .info-title{
+    font-family:'Shippori Mincho', serif;
+    font-size:1.6rem;
+    margin-bottom:0.3rem;
+  }
+  .info-days{
+    font-size:0.68rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+    margin-bottom:1.2rem;
+  }
+  .info-desc{
+    font-size:0.92rem;
+    line-height:1.7;
+    color: var(--ink);
+    opacity:0.85;
+    margin-bottom:1.6rem;
+  }
+  .info-close{
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color: var(--sakura-deep);
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
   }
 </style>
 </head>
@@ -623,7 +718,7 @@
   <div class="route-sub">14 días, seis paradas, un mismo hilo</div>
   <div class="postal-grid">
 
-    <div class="postal">
+    <div class="postal" data-city="tokio">
       <div class="icon-circle">
         <img src="img/tokio.jpg" alt="Cruce de Shibuya, Tokio">
       </div>
@@ -637,7 +732,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="akihabara">
       <div class="icon-circle">
         <img src="img/akihabara.jpg" alt="Akihabara de noche">
       </div>
@@ -651,7 +746,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="kioto">
       <div class="icon-circle">
         <img src="img/kioto.jpg" alt="Fushimi Inari, Kioto">
       </div>
@@ -665,7 +760,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="nara">
       <div class="icon-circle">
         <img src="img/nara.jpg" alt="Ciervo entre cerezos, Nara">
       </div>
@@ -678,7 +773,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="osaka">
       <div class="icon-circle">
         <img src="img/osaka.jpg" alt="Takoyaki en Osaka">
       </div>
@@ -692,7 +787,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="hiroshima">
       <div class="icon-circle">
         <img src="img/miyajima.jpg" alt="Torii flotante de Miyajima">
       </div>
@@ -706,7 +801,7 @@
       </ul>
     </div>
 
-    <div class="postal">
+    <div class="postal" data-city="hachiko">
       <div class="icon-circle">
         <img src="img/hachiko.jpg" alt="Estatua de Hachiko">
       </div>
@@ -730,13 +825,26 @@
 <section id="meanwhile">
   <div class="eyebrow">mientras tanto</div>
   <div class="meanwhile-kanji display">休</div>
-  <p class="meanwhile-sub">Pero Japón queda para dentro de unos meses, y no quiero que esperes hasta entonces para tu primer regalo. Así que, mientras hacemos tiempo... ¿qué te parece si nos vamos a desconectar un par de días?</p>
+  <p class="meanwhile-sub">Pero Japón queda para dentro de unos meses, y no quiero que esperes hasta entonces para tu primer regalo. Así que, mientras hacemos tiempo... ¿qué te parece si desconectamos de todo un par de días?</p>
   <div class="meanwhile-reveal">
-    <div class="place display">Balneario Alhama de Aragón</div>
-    <div class="when">31 agosto — 2 septiembre</div>
-    <div class="extra">aguas termales, masajes, buena comida, y una parada en el Monasterio de Piedra</div>
+    <div class="place display" id="balnearioText">Balneario Alhama de Aragón</div>
+    <button class="unlock-btn" id="unlockBtn">toca para desbloquear</button>
+    <div class="when" id="balnearioWhen">31 agosto — 2 septiembre</div>
+    <div class="extra" id="balnearioExtra">aguas termales, masajes, buena comida, y una parada en el Monasterio de Piedra</div>
   </div>
 </section>
+
+<div class="info-overlay" id="infoOverlay">
+  <div class="info-card">
+    <img id="infoImg" src="" alt="">
+    <div class="info-card-body">
+      <div class="info-title display" id="infoTitle"></div>
+      <div class="info-days" id="infoDays"></div>
+      <div class="info-desc" id="infoDesc"></div>
+      <button class="info-close" id="infoClose">cerrar</button>
+    </div>
+  </div>
+</div>
 
 <script>
   // countdown to spring 2027
@@ -794,6 +902,90 @@
     document.getElementById('whenText').classList.add('show');
     this.classList.add('hidden');
   });
+
+  // desbloquear el balneario al hacer click
+  document.getElementById('unlockBtn').addEventListener('click', function(){
+    document.getElementById('balnearioText').classList.add('revealed');
+    document.getElementById('balnearioWhen').classList.add('show');
+    document.getElementById('balnearioExtra').classList.add('show');
+    this.classList.add('hidden');
+  });
+
+  // modal de info por parada
+  (function(){
+    const info = {
+      tokio: {
+        img: 'img/tokio.jpg',
+        title: 'Tokio',
+        days: 'Días 1-5',
+        desc: 'La capital moderna, el punto de partida perfecto para entrar en ritmo. Cruza el famoso paso de peatones de Shibuya al anochecer, cuando las pantallas gigantes iluminan la calle. Piérdete por Shinjuku de noche (el barrio de Omoide Yokocho, con sus callejones de yakitori, es una pasada), y visita el templo Senso-ji en Asakusa por la mañana temprano para evitar las multitudes. Reserva un día completo para una excursión a Nikko (templos entre montañas) o Kamakura (el gran Buda y playas cerca de Tokio) — ambas están a un tren de distancia.'
+      },
+      akihabara: {
+        img: 'img/akihabara.jpg',
+        title: 'Akihabara',
+        days: 'Dentro de los días 1-5',
+        desc: 'El barrio eléctrico de Tokio: luces de neón, tiendas de electrónica de varios pisos, y la meca del anime y el manga. Es ideal para una tarde-noche, cuando los carteles cobran vida. Prueba alguna sala de arcade retro (Sega o Taito tienen varias por la zona), curiosea en las tiendas de figuras coleccionables, y si os apetece una experiencia curiosa, los maid cafés son parte del folclore local — no hace falta quedarse mucho rato para vivir la experiencia.'
+      },
+      kioto: {
+        img: 'img/kioto.jpg',
+        title: 'Kioto',
+        days: 'Días 6-9',
+        desc: 'El corazón tradicional de Japón. Camina entre los miles de torii rojos de Fushimi Inari — cuanto más temprano vayas, menos gente y mejor luz para fotos. El bosque de bambú de Arashiyama es especialmente bonito al amanecer. Por la tarde-noche, el barrio de Gion es donde más probabilidad hay de cruzarte con una geisha de camino a alguna casa de té. Aprovecha también para dedicar un día a Nara, a solo 45 minutos en tren.'
+      },
+      nara: {
+        img: 'img/nara.jpg',
+        title: 'Nara',
+        days: 'Dentro de los días 6-9, en tren desde Kioto',
+        desc: 'El parque de los ciervos: cientos de ciervos sueltos que se acercan sin miedo si les ofreces las galletas especiales ("shika senbei") que se venden por todo el parque — hacen una reverencia antes de comer, es adorable. Aprovecha para visitar el Todai-ji, el templo de madera más grande del mundo, que alberga un Buda gigante de bronce. Con medio día es suficiente para verlo con calma.'
+      },
+      osaka: {
+        img: 'img/osaka.jpg',
+        title: 'Osaka',
+        days: 'Días 10-11',
+        desc: 'La capital gastronómica de Japón. Dotonbori es la zona de referencia: canal iluminado, carteles gigantes (el cangrejo de Kani Doraku es icónico) y toda la comida callejera que puedas imaginar — takoyaki, okonomiyaki, kushikatsu. El Castillo de Osaka merece una visita por la mañana. Y si el tiempo lo permite, una parada rápida en el castillo de Himeji (en tren desde Osaka) es de las más bonitas de todo Japón, con su fachada blanca como una garza.'
+      },
+      hiroshima: {
+        img: 'img/miyajima.jpg',
+        title: 'Hiroshima · Miyajima',
+        days: 'Días 12-13',
+        desc: 'La parte más emotiva del viaje. El Parque y Museo Memorial de la Paz en Hiroshima es imprescindible, y se recorre con respeto y calma. Al día siguiente, cruza en ferry a la isla de Miyajima para ver el torii flotante del santuario Itsukushima — mejor al atardecer, cuando el cielo se tiñe de naranja detrás. En la isla también hay ciervos sueltos, como en Nara, pero con muchísima menos gente alrededor.'
+      },
+      hachiko: {
+        img: 'img/hachiko.jpg',
+        title: 'Vuelta a Tokio',
+        days: 'Día 14',
+        desc: 'El cierre del viaje. De vuelta en Tokio en shinkansen, una última parada obligatoria: la estatua de Hachiko, el perro que esperó a su dueño en la estación de Shibuya durante años — hoy es punto de encuentro de toda la ciudad. Un buen sitio simbólico para el último café antes de coger el vuelo de vuelta a casa.'
+      }
+    };
+
+    const overlay = document.getElementById('infoOverlay');
+    const imgEl = document.getElementById('infoImg');
+    const titleEl = document.getElementById('infoTitle');
+    const daysEl = document.getElementById('infoDays');
+    const descEl = document.getElementById('infoDesc');
+    const closeBtn = document.getElementById('infoClose');
+
+    document.querySelectorAll('.postal').forEach(function(postal){
+      postal.addEventListener('click', function(){
+        const key = postal.getAttribute('data-city');
+        const data = info[key];
+        if(!data) return;
+        imgEl.src = data.img;
+        imgEl.alt = data.title;
+        titleEl.textContent = data.title;
+        daysEl.textContent = data.days;
+        descEl.textContent = data.desc;
+        overlay.classList.add('show');
+      });
+    });
+
+    closeBtn.addEventListener('click', function(){
+      overlay.classList.remove('show');
+    });
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay){ overlay.classList.remove('show'); }
+    });
+  })();
 
   // scroll progress bar + back to top button
   const progressBar = document.getElementById('progressBar');
