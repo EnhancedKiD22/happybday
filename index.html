@@ -244,6 +244,7 @@
     object-fit:cover;
     border-radius: 3px;
     display:block;
+    filter: saturate(0.88) contrast(1.08) brightness(0.98) sepia(0.06);
   }
   .postcard-caption{
     margin-top:1.6rem;
@@ -316,7 +317,10 @@
     overflow:hidden;
   }
   .icon-circle svg{ width:46px; height:46px; }
-  .icon-circle img{ width:100%; height:100%; object-fit:cover; }
+  .icon-circle img{
+    width:100%; height:100%; object-fit:cover;
+    filter: saturate(0.85) contrast(1.1) brightness(0.95) sepia(0.08);
+  }
 
   .postal .name{
     font-family:'Shippori Mincho', serif;
@@ -597,6 +601,7 @@
   .info-overlay.show .info-card{ transform:none; }
   .info-card img{
     width:100%; height:200px; object-fit:cover; display:block;
+    filter: saturate(0.88) contrast(1.08) brightness(0.97) sepia(0.06);
   }
   .info-card-body{ padding: 1.8rem 2rem 2.2rem; }
   .info-title{
@@ -693,15 +698,19 @@
   <div class="why-list">
     <div class="why-item">
       <span class="num display">一</span>
-      <div class="txt">Porque lleva años siendo esa idea que sacábamos en cualquier conversación, medio en broma, medio en serio — y las cosas que se repiten tanto, al final, hay que hacerlas de verdad.</div>
+      <div class="txt">Porque pocas parejas comparten esto tal cual: las ganas de probarlo todo sin miedo en la mesa — ramen en un sótano, takoyaki en la calle, lo que sea — y la misma calma cuando pisamos un templo o un jardín, aunque haya cien personas alrededor.</div>
     </div>
     <div class="why-item">
       <span class="num display">二</span>
-      <div class="txt">Porque los dos queremos las mismas cosas de un viaje así: perdernos por ciudades enormes, comer sin miedo, y quedarnos en silencio delante de un templo o una montaña.</div>
+      <div class="txt">Porque llevamos tiempo diciendo "algún día" a este país, medio en broma, medio en serio — y las cosas que se repiten tanto, al final, hay que hacerlas de verdad.</div>
     </div>
     <div class="why-item">
       <span class="num display">三</span>
       <div class="txt">Porque los 30 solo se cumplen una vez, y quería que el regalo fuera algo que recordáramos dentro de otros 30 años, no solo dentro de 30 días.</div>
+    </div>
+    <div class="why-item">
+      <span class="num display">四</span>
+      <div class="txt">Porque vamos a visitar el museo que reúne el universo de El Viaje de Chihiro y El Castillo Ambulante, y a pisar las escaleras reales de Your Name — y sé lo que eso significa para ti.</div>
     </div>
   </div>
 </section>
@@ -715,7 +724,7 @@
 
 <section id="route">
   <div class="route-title display">El recorrido, a grandes rasgos</div>
-  <div class="route-sub">14 días, seis paradas, un mismo hilo</div>
+  <div class="route-sub">14 días, seis paradas — mercados, ramen, calma, y probar sin miedo en cada calle</div>
   <div class="postal-grid">
 
     <div class="postal" data-city="tokio">
@@ -728,6 +737,10 @@
       <ul class="highlights">
         <li>Cruce de Shibuya de noche</li>
         <li>Templo Senso-ji, Asakusa</li>
+        <li>Tsukiji Outer Market o Toyosu Market (comida fresca)</li>
+        <li>Ramen en Shinjuku, yakitori en Omoide Yokocho</li>
+        <li>Museo Ghibli en Mitaka</li>
+        <li>Escaleras de Suga Shrine (Your Name)</li>
         <li>Día completo en Nikko o Kamakura</li>
       </ul>
     </div>
@@ -781,9 +794,11 @@
       <div class="days">Días 10-11</div>
       <div class="note">Dotonbori, Castillo de Osaka + parada en Himeji</div>
       <ul class="highlights">
-        <li>Takoyaki recién hecho en Dotonbori</li>
-        <li>Castillo de Osaka</li>
-        <li>Parada rápida en el castillo de Himeji</li>
+        <li>Dotonbori de noche (takoyaki, okonomiyaki)</li>
+        <li>Mercadillos de comida callejera</li>
+        <li>Ramen de Osaka, kushikatsu (carne pinchada frita)</li>
+        <li>Castillo de Osaka por la mañana</li>
+        <li>Parada en el castillo de Himeji</li>
       </ul>
     </div>
 
@@ -796,8 +811,9 @@
       <div class="note">Parque de la Paz + el torii flotante de Itsukushima</div>
       <ul class="highlights">
         <li>Parque y Museo Memorial de la Paz</li>
-        <li>Torii flotante al atardecer</li>
-        <li>Los ciervos sueltos también aquí, en la isla</li>
+        <li>Okonomiyaki de Hiroshima (estilo específico de aquí)</li>
+        <li>Ramen y mercadillos locales</li>
+        <li>Ferry a Miyajima, torii flotante al atardecer</li>
       </ul>
     </div>
 
@@ -918,43 +934,43 @@
         img: 'img/tokio.jpg',
         title: 'Tokio',
         days: 'Días 1-5',
-        desc: 'La capital moderna, el punto de partida perfecto para entrar en ritmo. Cruza el famoso paso de peatones de Shibuya al anochecer, cuando las pantallas gigantes iluminan la calle. Piérdete por Shinjuku de noche (el barrio de Omoide Yokocho, con sus callejones de yakitori, es una pasada), y visita el templo Senso-ji en Asakusa por la mañana temprano para evitar las multitudes. Reserva un día completo para una excursión a Nikko (templos entre montañas) o Kamakura (el gran Buda y playas cerca de Tokio) — ambas están a un tren de distancia.'
+        desc: 'Tokio es donde empieza nuestro viaje de comida sin miedo. Mercados como Tsukiji (comida fresca, sushi recién hecho) o Toyosu, donde probamos de todo sin pensar en lo que es. Shinjuku de noche, en los callejones de Omoide Yokocho, donde los tiny bars de yakitori huelen a humo y carbón — pedimos sin saber qué es, y comemos. Ramen en una esquina, con la boca llena. Y después, el lado tranquilo: el Museo Ghibli en Mitaka (reserva entradas un mes antes), las escaleras de Suga Shrine en Yotsuya (Your Name), el templo Senso-ji al amanecer. Todo en la misma ciudad.'
       },
       akihabara: {
         img: 'img/akihabara.jpg',
         title: 'Akihabara',
         days: 'Dentro de los días 1-5',
-        desc: 'El barrio eléctrico de Tokio: luces de neón, tiendas de electrónica de varios pisos, y la meca del anime y el manga. Es ideal para una tarde-noche, cuando los carteles cobran vida. Prueba alguna sala de arcade retro (Sega o Taito tienen varias por la zona), curiosea en las tiendas de figuras coleccionables, y si os apetece una experiencia curiosa, los maid cafés son parte del folclore local — no hace falta quedarse mucho rato para vivir la experiencia.'
+        desc: 'Una tarde en el barrio más friki de Tokio: neones, tiendas de manga, arcades. Y entre medias, comemos tonkatsu (cerdo frito), ramen en algún sótano, probamos cosas en konbini (tiendas 24h) que no reconocemos. Sin prisas, solo dándonos el gusto de deambular y probar sin plan fijo.'
       },
       kioto: {
         img: 'img/kioto.jpg',
         title: 'Kioto',
         days: 'Días 6-9',
-        desc: 'El corazón tradicional de Japón. Camina entre los miles de torii rojos de Fushimi Inari — cuanto más temprano vayas, menos gente y mejor luz para fotos. El bosque de bambú de Arashiyama es especialmente bonito al amanecer. Por la tarde-noche, el barrio de Gion es donde más probabilidad hay de cruzarte con una geisha de camino a alguna casa de té. Aprovecha también para dedicar un día a Nara, a solo 45 minutos en tren.'
+        desc: 'Aquí es donde vamos a encontrar esa calma que tanto nos gusta a los dos. Caminamos entre los miles de torii rojos de Fushimi Inari a primera hora, casi solos; cruzamos el bosque de bambú de Arashiyama en silencio; paseamos por Gion al atardecer sin prisa. Y comemos el lado tradicional: kaiseki (comida de temporada, pequeños platos), tofu, tempura — todo con más ceremonia que en Tokio, pero igual de sin miedo. Un día entero para Nara, está a 45 minutos en tren.'
       },
       nara: {
         img: 'img/nara.jpg',
         title: 'Nara',
         days: 'Dentro de los días 6-9, en tren desde Kioto',
-        desc: 'El parque de los ciervos: cientos de ciervos sueltos que se acercan sin miedo si les ofreces las galletas especiales ("shika senbei") que se venden por todo el parque — hacen una reverencia antes de comer, es adorable. Aprovecha para visitar el Todai-ji, el templo de madera más grande del mundo, que alberga un Buda gigante de bronce. Con medio día es suficiente para verlo con calma.'
+        desc: 'Un alto en el camino, casi de casualidad. Cientos de ciervos sueltos que se acercan sin miedo si les ofrecemos las galletas que se venden por todo el parque — hacen una reverencia antes de comer. El Todai-ji, el templo más grande de madera del mundo, con un Buda gigante. Y comemos kakigori (hielo raspado con jarabe), probar comida en los puestos del mercadillo alrededor del templo. Medio día es suficiente.'
       },
       osaka: {
         img: 'img/osaka.jpg',
         title: 'Osaka',
         days: 'Días 10-11',
-        desc: 'La capital gastronómica de Japón. Dotonbori es la zona de referencia: canal iluminado, carteles gigantes (el cangrejo de Kani Doraku es icónico) y toda la comida callejera que puedas imaginar — takoyaki, okonomiyaki, kushikatsu. El Castillo de Osaka merece una visita por la mañana. Y si el tiempo lo permite, una parada rápida en el castillo de Himeji (en tren desde Osaka) es de las más bonitas de todo Japón, con su fachada blanca como una garza.'
+        desc: 'Osaka es la parte donde más ganas vamos a tener de comer. Dotonbori de noche es puro caos: takoyaki (pulpo en bolitas crujientes), okonomiyaki (tortilla japonesa de verduras y proteína), ramen de Osaka, kushikatsu (carne pinchada y frita), puestos de comida callejera en cada esquina. Mercadillos donde no sabemos qué estamos comprando pero lo probamos igual. Es aquí donde el "sin miedo" se convierte en deporte. El Castillo de Osaka por la mañana con los ojos abiertos — y si queda tiempo, el castillo de Himeji, blanco como una garza, de camino.'
       },
       hiroshima: {
         img: 'img/miyajima.jpg',
         title: 'Hiroshima · Miyajima',
         days: 'Días 12-13',
-        desc: 'La parte más emotiva del viaje. El Parque y Museo Memorial de la Paz en Hiroshima es imprescindible, y se recorre con respeto y calma. Al día siguiente, cruza en ferry a la isla de Miyajima para ver el torii flotante del santuario Itsukushima — mejor al atardecer, cuando el cielo se tiñe de naranja detrás. En la isla también hay ciervos sueltos, como en Nara, pero con muchísima menos gente alrededor.'
+        desc: 'La parte más callada del viaje, y por eso la que más falta nos va a hacer. El Parque y Museo Memorial de la Paz se recorre despacio, sin hablar mucho. Después, comemos okonomiyaki de Hiroshima (el estilo que lo diferencia de Osaka) y ramen en los locales alrededor. Al día siguiente, el ferry a Miyajima para ver el torii flotante al atardecer, con el cielo naranja detrás — de los silencios bonitos de verdad. Y otra vez ciervos sueltos, como en Nara, pero con casi nadie alrededor.'
       },
       hachiko: {
         img: 'img/hachiko.jpg',
         title: 'Vuelta a Tokio',
         days: 'Día 14',
-        desc: 'El cierre del viaje. De vuelta en Tokio en shinkansen, una última parada obligatoria: la estatua de Hachiko, el perro que esperó a su dueño en la estación de Shibuya durante años — hoy es punto de encuentro de toda la ciudad. Un buen sitio simbólico para el último café antes de coger el vuelo de vuelta a casa.'
+        desc: 'El cierre, de vuelta en shinkansen. Antes del aeropuerto, una última parada que quiero hacer contigo: la estatua de Hachiko, el perro que esperó a su dueño en esa misma estación durante años. Un último ramen, un último mercadillo, un último "sin miedo" — y después el vuelo.'
       }
     };
 
